@@ -1,22 +1,34 @@
 package javaapplication12;
 
+import java.awt.Color;
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Angelo Ablaza
  */
 public class StationFrame extends javax.swing.JFrame {
 
+    Formater formater;
+    ArrayList<Station> stations;
+    ArrayList<Train> trains;
+
     /**
      * Creates new form StationFrame
      */
     public StationFrame() {
         initComponents();
+        formater = new Formater();
+        stations = new ArrayList<>(8);
+        for (int i = 0; i < 8; i++) {
+            stations.add(new Station(i + 1));
+        }
+        trains = new ArrayList<>(16);
     }
 
     /**
@@ -56,14 +68,14 @@ public class StationFrame extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         departureBox = new javax.swing.JComboBox<>();
         arrivalBox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        addPassengerBtn = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        trainTextField = new javax.swing.JTextField();
+        trainNoTextField = new javax.swing.JTextField();
         capacityTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton2 = new javax.swing.JButton();
+        feedTextPane = new javax.swing.JTextPane();
+        launchTrainBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,15 +127,25 @@ public class StationFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Add");
+        addPassengerBtn.setText("Add");
+        addPassengerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPassengerBtnActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Train #");
 
         jLabel13.setText("Capacity");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(feedTextPane);
 
-        jButton2.setText("Launch");
+        launchTrainBtn.setText("Launch");
+        launchTrainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                launchTrainBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,12 +186,12 @@ public class StationFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(trainTextField))
+                                .addComponent(trainNoTextField))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(addPassengerBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(launchTrainBtn, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(100, 100, 100)
@@ -249,17 +271,17 @@ public class StationFrame extends javax.swing.JFrame {
                                     .addComponent(jLabel11)
                                     .addComponent(arrivalBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)
+                                .addComponent(addPassengerBtn)
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel12)
-                                    .addComponent(trainTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(trainNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel13)
                                     .addComponent(capacityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)))
+                                .addComponent(launchTrainBtn)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
@@ -273,6 +295,78 @@ public class StationFrame extends javax.swing.JFrame {
     private void arrivalBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrivalBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_arrivalBoxActionPerformed
+
+    private void addPassengerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPassengerBtnActionPerformed
+        // TODO add your handling code here:
+        int passengerID = Integer.parseInt(passengerTextField.getText());
+        int departure = Integer.parseInt(departureBox.getSelectedItem().toString());
+        int destination = Integer.parseInt(arrivalBox.getSelectedItem().toString());
+
+        Passenger p = new Passenger(passengerID, departure, destination); //create new passenger when a passenger is added
+
+        refreshView(p);
+
+    }//GEN-LAST:event_addPassengerBtnActionPerformed
+
+    private void launchTrainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_launchTrainBtnActionPerformed
+        // TODO add your handling code here:
+        int id = Integer.parseInt(trainNoTextField.getText());
+        int capacity = Integer.parseInt(capacityTextField.getText());
+        Train t = new Train(id, capacity);
+        trains.add(t);
+        deployTrain(t);
+    }//GEN-LAST:event_launchTrainBtnActionPerformed
+
+    //shit needs to be threaded
+    public void refreshView(Passenger passenger) {
+        switch (passenger.initial) {
+            case 1:
+                formater.appendToPane(station_oneTextPane, "Passenger #" + passenger.id + " is at Station 1", Color.blue);
+                stations.get(passenger.initial).addPassenger(passenger); //station will now have passengers
+                break;
+            case 2:
+                formater.appendToPane(station_twoTextPane, "Passenger #" + passenger.id + " is at Station 2", Color.blue);
+                stations.get(passenger.initial).addPassenger(passenger);
+                break;
+            case 3:
+                formater.appendToPane(station_threeTextPane, "Passenger #" + passenger.id + " is at Station 3", Color.blue);
+                stations.get(passenger.initial).addPassenger(passenger);
+                break;
+            case 4:
+                formater.appendToPane(station_fourTextPane, "Passenger #" + passenger.id + " is at Station 4", Color.blue);
+                stations.get(passenger.initial).addPassenger(passenger);
+                break;
+            case 5:
+                formater.appendToPane(station_fiveTextPane, "Passenger #" + passenger.id + " is at Station 5", Color.blue);
+                stations.get(passenger.initial).addPassenger(passenger);
+                break;
+            case 6:
+                formater.appendToPane(station_sixTextPane, "Passenger #" + passenger.id + " is at Station 6", Color.blue);
+                stations.get(passenger.initial).addPassenger(passenger);
+                break;
+            case 7:
+                formater.appendToPane(station_sevenTextPane, "Passenger #" + passenger.id + " is at Station 7", Color.blue);
+                stations.get(passenger.initial).addPassenger(passenger);
+                break;
+            case 8:
+                formater.appendToPane(station_eightTextPane, "Passenger #" + passenger.id + " is at Station 8", Color.blue);
+                stations.get(passenger.initial).addPassenger(passenger);
+                break;
+        }
+    }
+
+    //shit needs to be threaded
+    public void deployTrain(Train t) {
+        //go to first station
+        //check if passengers 
+        //if there are, let them board
+        //else move to next the repeat
+        for(int i = 0; i < stations.size(); i++){
+            ArrayList<Passenger> p = stations.get(i).passengers; //get passenger arraylist of certain station
+//            System.out.println("Sation #" + stations.get(i).stationNo + " has Passenger #" + p.toString());
+            System.out.println("Train #" + t.trainNo + " is at Station # " +  stations.get(i).stationNo);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -310,11 +404,11 @@ public class StationFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addPassengerBtn;
     private javax.swing.JComboBox<String> arrivalBox;
     private javax.swing.JTextField capacityTextField;
     private javax.swing.JComboBox<String> departureBox;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextPane feedTextPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -337,7 +431,7 @@ public class StationFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JButton launchTrainBtn;
     private javax.swing.JTextField passengerTextField;
     private javax.swing.JTextPane station_eightTextPane;
     private javax.swing.JTextPane station_fiveTextPane;
@@ -347,6 +441,6 @@ public class StationFrame extends javax.swing.JFrame {
     private javax.swing.JTextPane station_sixTextPane;
     private javax.swing.JTextPane station_threeTextPane;
     private javax.swing.JTextPane station_twoTextPane;
-    private javax.swing.JTextField trainTextField;
+    private javax.swing.JTextField trainNoTextField;
     // End of variables declaration//GEN-END:variables
 }
