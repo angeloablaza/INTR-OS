@@ -24,11 +24,11 @@ public class StationFrame extends javax.swing.JFrame {
     public StationFrame() {
         initComponents();
         formater = new Formater();
-        stations = new ArrayList<>(8);
+        stations = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             stations.add(new Station(i + 1));
         }
-        trains = new ArrayList<>(16);
+        trains = new ArrayList<>();
     }
 
     /**
@@ -303,7 +303,7 @@ public class StationFrame extends javax.swing.JFrame {
         int destination = Integer.parseInt(arrivalBox.getSelectedItem().toString());
 
         Passenger p = new Passenger(passengerID, departure, destination); //create new passenger when a passenger is added
-
+        stations.get(departure - 1).addPassenger(p);
         refreshView(p);
 
     }//GEN-LAST:event_addPassengerBtnActionPerformed
@@ -322,35 +322,27 @@ public class StationFrame extends javax.swing.JFrame {
         switch (passenger.initial) {
             case 1:
                 formater.appendToPane(station_oneTextPane, "Passenger #" + passenger.id + " is at Station 1", Color.blue);
-                stations.get(passenger.initial).addPassenger(passenger); //station will now have passengers
                 break;
             case 2:
                 formater.appendToPane(station_twoTextPane, "Passenger #" + passenger.id + " is at Station 2", Color.blue);
-                stations.get(passenger.initial).addPassenger(passenger);
                 break;
             case 3:
                 formater.appendToPane(station_threeTextPane, "Passenger #" + passenger.id + " is at Station 3", Color.blue);
-                stations.get(passenger.initial).addPassenger(passenger);
                 break;
             case 4:
                 formater.appendToPane(station_fourTextPane, "Passenger #" + passenger.id + " is at Station 4", Color.blue);
-                stations.get(passenger.initial).addPassenger(passenger);
                 break;
             case 5:
                 formater.appendToPane(station_fiveTextPane, "Passenger #" + passenger.id + " is at Station 5", Color.blue);
-                stations.get(passenger.initial).addPassenger(passenger);
                 break;
             case 6:
                 formater.appendToPane(station_sixTextPane, "Passenger #" + passenger.id + " is at Station 6", Color.blue);
-                stations.get(passenger.initial).addPassenger(passenger);
                 break;
             case 7:
                 formater.appendToPane(station_sevenTextPane, "Passenger #" + passenger.id + " is at Station 7", Color.blue);
-                stations.get(passenger.initial).addPassenger(passenger);
                 break;
             case 8:
                 formater.appendToPane(station_eightTextPane, "Passenger #" + passenger.id + " is at Station 8", Color.blue);
-                stations.get(passenger.initial).addPassenger(passenger);
                 break;
         }
     }
@@ -363,8 +355,10 @@ public class StationFrame extends javax.swing.JFrame {
         //else move to next the repeat
         for(int i = 0; i < stations.size(); i++){
             ArrayList<Passenger> p = stations.get(i).passengers; //get passenger arraylist of certain station
-//            System.out.println("Sation #" + stations.get(i).stationNo + " has Passenger #" + p.toString());
-            System.out.println("Train #" + t.trainNo + " is at Station # " +  stations.get(i).stationNo);
+            for(int j = 0; j < p.size(); i++){ //iterate through the passengers in the arraylist
+                System.out.println("Passenger #" + p.get(j).id + " is in " + stations.get(i).stationNo);
+            }
+            //formater.appendToPane(feedTextPane, "Train #" + t.trainNo + " is at Station # " +  stations.get(i).stationNo + "\n" , Color.orange);
         }
     }
 
