@@ -13,14 +13,22 @@ import java.util.ArrayList;
  */
 public class Station {
 
-    public ArrayList<Passenger> passengers = new ArrayList<>();
+    public ArrayList<Passenger> passengers;
     public int stationNo;
 
     public Station(int stationNo) {
         this.stationNo = stationNo;
+        passengers = new ArrayList<>();
     }
 
     public void addPassenger(Passenger passenger) {
         passengers.add(passenger);
+    }
+    
+    
+    public void display(){
+        for(int i=0; i<passengers.size(); i++){
+            System.out.println(passengers.get(i).id);
+        }
     }
 }
