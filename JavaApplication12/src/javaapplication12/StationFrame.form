@@ -296,37 +296,37 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="STATION 2"/>
+        <Property name="text" type="java.lang.String" value="STATION 1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="STATION 3"/>
+        <Property name="text" type="java.lang.String" value="STATION 2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="STATION 4"/>
+        <Property name="text" type="java.lang.String" value="STATION 3"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="STATION 5"/>
+        <Property name="text" type="java.lang.String" value="STATION 4"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="STATION 6"/>
+        <Property name="text" type="java.lang.String" value="STATION 5"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="STATION 7"/>
+        <Property name="text" type="java.lang.String" value="STATION 6"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="STATION 8"/>
+        <Property name="text" type="java.lang.String" value="STATION 7"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">

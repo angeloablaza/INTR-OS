@@ -97,19 +97,19 @@ public class StationFrame extends javax.swing.JFrame {
 
         jLabel1.setText("STATION 1");
 
-        jLabel2.setText("STATION 2");
+        jLabel2.setText("STATION 1");
 
-        jLabel3.setText("STATION 3");
+        jLabel3.setText("STATION 2");
 
-        jLabel4.setText("STATION 4");
+        jLabel4.setText("STATION 3");
 
-        jLabel5.setText("STATION 5");
+        jLabel5.setText("STATION 4");
 
-        jLabel6.setText("STATION 6");
+        jLabel6.setText("STATION 5");
 
-        jLabel7.setText("STATION 7");
+        jLabel7.setText("STATION 6");
 
-        jLabel8.setText("STATION 8");
+        jLabel8.setText("STATION 7");
 
         jLabel9.setText("Passenger #");
 
