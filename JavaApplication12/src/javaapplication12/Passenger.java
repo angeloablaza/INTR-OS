@@ -20,5 +20,31 @@ public class Passenger {
         this.initial = initial;
         this.destination = destination;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getInitial() {
+        return initial;
+    }
+
+    public void setInitial(int initial) {
+        this.initial = initial;
+    }
+
+    public int getDestination() {
+        return destination;
+    }
+
+    public void setDestination(int destination) {
+        this.destination = destination;
+    }
+    
+    
     
 }
