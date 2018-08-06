@@ -18,6 +18,9 @@ public class Driver {
         // TODO code application logic here
         StationFrame sf = new StationFrame();
         sf.setVisible(true);
+//        Train t = new Train(1, 3);
+//        new Thread(t).start();
+
     }
     
 }

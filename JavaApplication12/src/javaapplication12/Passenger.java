@@ -9,7 +9,7 @@ package javaapplication12;
  *
  * @author Angelo Ablaza
  */
-public class Passenger {
+public class Passenger implements Runnable{
     
     public int id;
     public int initial;
@@ -43,6 +43,11 @@ public class Passenger {
 
     public void setDestination(int destination) {
         this.destination = destination;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Passenger is waiting");
     }
     
     

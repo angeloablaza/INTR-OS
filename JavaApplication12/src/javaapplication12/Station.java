@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Angelo Ablaza
  */
-public class Station {
+public class Station implements Runnable{
 
     public ArrayList<Passenger> passengers;
     public int stationNo;
@@ -55,5 +55,10 @@ public class Station {
         for(int i=0; i<passengers.size(); i++){
             System.out.println(passengers.get(i).id);
         }
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Station is running");
     }
 }

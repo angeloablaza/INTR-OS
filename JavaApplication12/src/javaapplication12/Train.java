@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Angelo Ablaza
  */
-public class Train {
+public class Train implements Runnable {
 
     public ArrayList<Passenger> passengers;
     public int trainNo;
@@ -57,5 +57,10 @@ public class Train {
         for(int i=0; i<passengers.size(); i++){
             System.out.println(passengers.get(i).id);
         }
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Train is running");
     }
 }
